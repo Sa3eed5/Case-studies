@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management - Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>Employee Management System</h1>
+                <p>Please log in to continue</p>
+            </div>
+            
+            <form id="loginForm" class="login-form">
+                <div class="input-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required 
+                           data-testid="login-username" 
+                           placeholder="Enter your username">
+                </div>
+                
+                <div class="input-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required 
+                           data-testid="login-password" 
+                           placeholder="Enter your password">
+                </div>
+                
+                <button type="submit" class="login-btn" data-testid="login-submit">
+                    Login
+                </button>
+            </form>
+            
+            <div id="error-message" class="error-message hidden" data-testid="login-error">
+                Invalid username or password. Please try again.
+            </div>
+            
+            <!-- Hidden credentials for testing -->
+            <div class="hidden-info" style="display: none;">
+                Username: saied
+                Password: saied
+            </div>
+        </div>
+    </div>
+    
+    <script src="login.js"></script>
+</body>
+</html>

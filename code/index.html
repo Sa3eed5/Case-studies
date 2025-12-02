@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee API Demo - API Testing</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="main-container" class="container main-wrapper" data-xpath="//div[@id='main-container']">
+        <div class="header-section">
+            <h1 id="page-title" class="page-header" data-xpath="//h1[@id='page-title']">Employee API Management System</h1>
+            <div class="user-info">
+                <span id="welcome-user">Welcome, <span id="current-user">User</span></span>
+                <button id="logout-btn" class="logout-btn" data-testid="logout-btn">Logout</button>
+            </div>
+        </div>
+        
+        <!-- API Controls Section -->
+        <div id="api-controls" class="api-controls-section" data-xpath="//div[@id='api-controls']">
+            <div class="control-group">
+                <button data-testid="load-employees-btn" id="loadEmployeesBtn" class="api-btn primary-btn" data-xpath="//button[@id='loadEmployeesBtn']">
+                    Load Employees (GET)
+                </button>
+                <button data-testid="add-employee-btn" id="addEmployeeBtn" class="api-btn secondary-btn" data-xpath="//button[@id='addEmployeeBtn']">
+                    Add Employee (POST)
+                </button>
+                <button data-testid="refresh-btn" id="refreshBtn" class="api-btn info-btn" data-xpath="//button[@id='refreshBtn']">
+                    Refresh Data
+                </button>
+            </div>
+            
+            <!-- Loading Indicator -->
+            <div id="loading-indicator" class="loading-indicator hidden" data-xpath="//div[@id='loading-indicator']">
+                <div class="spinner"></div>
+                <span data-testid="loading-text" id="loading-text">Loading...</span>
+            </div>
+            
+            <!-- API Status -->
+            <div id="api-status" class="api-status" data-xpath="//div[@id='api-status']">
+                <span data-testid="status-text" id="status-text">Ready</span>
+                <span data-testid="api-endpoint" id="api-endpoint" class="endpoint-url">http://localhost:3000/api/employees</span>
+            </div>
+        </div>
+
+        <!-- Employee Form for Adding/Editing -->
+        <div id="employee-form-section" class="form-section hidden" data-xpath="//div[@id='employee-form-section']">
+            <h3 data-testid="form-title" id="form-title">Add New Employee</h3>
+            <form id="employee-form" class="employee-form" data-xpath="//form[@id='employee-form']">
+                <div class="form-row">
+                    <input data-testid="input-name" id="input-name" type="text" placeholder="Full Name" required class="form-input" data-xpath="//input[@id='input-name']">
+                    <input data-testid="input-email" id="input-email" type="email" placeholder="Email" required class="form-input" data-xpath="//input[@id='input-email']">
+                </div>
+                <div class="form-row">
+                    <select data-testid="input-department" id="input-department" required class="form-select" data-xpath="//select[@id='input-department']">
+                        <option value="">Select Department</option>
+                        <option value="Engineering">Engineering</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Finance">Finance</option>
+                        <option value="Operations">Operations</option>
+                    </select>
+                    <input data-testid="input-phone" id="input-phone" type="tel" placeholder="Phone Number" required class="form-input" data-xpath="//input[@id='input-phone']">
+                </div>
+                <div class="form-row">
+                    <input data-testid="input-hiredate" id="input-hiredate" type="date" required class="form-input" data-xpath="//input[@id='input-hiredate']">
+                    <select data-testid="input-status" id="input-status" required class="form-select" data-xpath="//select[@id='input-status']">
+                        <option value="">Select Status</option>
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                        <option value="Pending">Pending</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" data-testid="submit-employee-btn" id="submit-employee-btn" class="api-btn success-btn" data-xpath="//button[@id='submit-employee-btn']">
+                        Save Employee
+                    </button>
+                    <button type="button" data-testid="cancel-form-btn" id="cancel-form-btn" class="api-btn cancel-btn" data-xpath="//button[@id='cancel-form-btn']">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <div id="table-wrapper" class="table-container table-wrapper" data-xpath="//div[@id='table-wrapper']">
+            <table data-testid="data-table" id="dataTable" class="data-table employee-table" data-xpath="//table[@id='dataTable']">
+                <thead id="table-head" class="table-header" data-xpath="//thead[@id='table-head']">
+                    <tr data-testid="table-row-header" id="header-row" class="header-row" data-xpath="//tr[@id='header-row']">
+                        <th data-testid="table-cell-header-id" id="header-id" class="header-cell id-column" data-xpath="//th[@id='header-id']">ID</th>
+                        <th data-testid="table-cell-header-name" id="header-name" class="header-cell name-column" data-xpath="//th[@id='header-name']">Name</th>
+                        <th data-testid="table-cell-header-email" id="header-email" class="header-cell email-column" data-xpath="//th[@id='header-email']">Email</th>
+                        <th data-testid="table-cell-header-department" id="header-department" class="header-cell department-column" data-xpath="//th[@id='header-department']">Department</th>
+                        <th data-testid="table-cell-header-phone" id="header-phone" class="header-cell phone-column" data-xpath="//th[@id='header-phone']">Phone</th>
+                        <th data-testid="table-cell-header-hiredate" id="header-hiredate" class="header-cell hiredate-column" data-xpath="//th[@id='header-hiredate']">Hire Date</th>
+                        <th data-testid="table-cell-header-status" id="header-status" class="header-cell status-column" data-xpath="//th[@id='header-status']">Status</th>
+                        <th data-testid="table-cell-header-actions" id="header-actions" class="header-cell actions-column" data-xpath="//th[@id='header-actions']">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body" class="table-data-body" data-xpath="//tbody[@id='table-body']">
+                    <!-- Table rows will be populated dynamically via API -->
+                    <tr id="no-data-row" class="no-data-row" data-xpath="//tr[@id='no-data-row']">
+                        <td colspan="8" data-testid="no-data-message" class="no-data-message">No employees loaded. Click "Load Employees" to fetch data from API.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="button-wrapper" class="button-container export-section" data-xpath="//div[@id='button-wrapper']">
+            <button data-testid="export-button" id="exportButton" class="export-btn primary-button" data-xpath="//button[@id='exportButton']" disabled>
+                Export to CSV
+            </button>
+            <button data-testid="export-api-btn" id="exportApiBtn" class="export-btn secondary-button" data-xpath="//button[@id='exportApiBtn']">
+                Export via API (POST)
+            </button>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
